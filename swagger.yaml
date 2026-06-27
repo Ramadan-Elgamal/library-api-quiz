@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+    title: "Library API"
+    version: "1.0.0"
+    description: "Swagger documentation for Library API"
+servers:
+    -   url: "http://localhost:3000"
+        description: "Local server"
+
+paths:
+    /authors:
+        get:
+            summary: "List all authors"
+            responses:
+                "200":
+                    description: "OK"
+            content:
+                application/json:
+                    schema:
+                        type: array
+                        items:
+                            $ref: "#/components/schemas/Author"
+        post:
+            summary: "Create author"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewAuthor"
+            responses:
+                "201":
+                    description: "Author created"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Author"
+    /authors/{id}:
+        get:
+            summary: "Get one author"
+            responses:
+                "200":
+                    description: "OK"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Author"
+                "404":
+                    description: "Author not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        patch:
+            summary: "Update author"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewAuthor"
+            responses:
+                "200":
+                    description: "Author updated"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Author"
+                "404":
+                    description: "Author not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        delete:
+            summary: "Delete author"
+            responses:
+                "204":
+                    description: "Author deleted"
+                "404":
+                    description: "Author not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+
+    /books:
+        get:
+            summary: "List all books"
+            responses:
+                "200":
+                    description: "OK"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Book"
+        post:
+            summary: "Create book"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewBook"
+            responses:
+                "201":
+                    description: "Book created"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Book"
+    /books/{id}:
+        get:
+            summary: "Get one book"
+            responses:
+                "200":
+                    description: "OK"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Book"
+                "404":
+                    description: "Book not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        patch:
+            summary: "Update book"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewBook"
+            responses:
+                "200":
+                    description: "Book updated"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Book"
+                "404":
+                    description: "Book not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        delete:
+            summary: "Delete book"
+            responses:
+                "204":
+                    description: "Book deleted"
+                "404":
+                    description: "Book not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /loans:
+        get:
+            summary: "List all loans"
+            responses:
+                "200":
+                    description: "OK"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Loan"
+        post:
+            summary: "Create loan"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewLoan"
+            responses:
+                "201":
+                    description: "Loan created"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Loan"
+                "404":
+                    description: "Loan not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /loans/{id}:
+        get:
+            summary: "Get one loan"
+            responses:
+                "200":
+                    description: "OK"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Loan"
+                "404":
+                    description: "Loan not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        patch:
+            summary: "Update loan"
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/NewLoan"
+            responses:
+                "200":
+                    description: "Loan updated"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Loan"
+                "404":
+                    description: "Loan not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+        delete:
+            summary: "Delete loan"
+            responses:
+                "204":
+                    description: "Loan deleted"
+                "404":
+                    description: "Loan not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /loans/{id}/return:
+        patch:
+            summary: "Return loan"
+            responses:
+                "200":
+                    description: "Loan returned"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Loan"
+                "404":
+                    description: "Loan not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                "409":
+                    description: "Loan already returned"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+
+components:
+    schemas:
+        Author:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: "Author ID"
+                name:
+                    type: string
+                    description: "Author name"
+                bio:
+                    type: string
+                    description: "Author biography"
+        NewAuthor:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: "Author name"
+                bio:
+                    type: string
+                    description: "Author biography"
+            required:
+                -   name
+        Book:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: "Book ID"
+                title:
+                    type: string
+                    description: "Book title"
+                year:
+                    type: integer
+                    description: "Book year"
+                author_id:
+                    type: integer
+                    description: "Book author ID"
+            required:
+                -   title
+                -   author_id
+        NewBook:
+            type: object
+            properties:
+                title:
+                    type: string
+                    description: "Book title"
+                year:
+                    type: integer
+                    description: "Book year"
+                author_id:
+                    type: integer
+                    description: "Book author ID"
+            required:
+                -   title
+                -   author_id
+        Loan:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: "Loan ID"
+                book_id:
+                    type: integer
+                    description: "Loan book ID"
+                borrower_name:
+                    type: string
+                    description: "Loan borrower name"
+                loaned_at:
+                    type: string
+                    description: "Loan loaned at"
+                returned_at:
+                    type: string
+                    description: "Loan returned at"
+            required:
+                -   book_id
+                -   borrower_name
+        NewLoan:
+            type: object
+            properties:
+                book_id:
+                    type: integer
+                    description: "Loan book ID"
+                borrower_name:
+                    type: string
+                    description: "Loan borrower name"
+            required:
+                -   book_id
+                -   borrower_name
+        Error:
+            type: object
+            properties:
+                error:
+                    type: string
+                    description: "Error message"
+            required:
+                -   error
+    responses:
+        NotFound:
+            description: "Not Found"
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/Error"

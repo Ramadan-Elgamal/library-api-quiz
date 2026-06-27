@@ -2,7 +2,7 @@
 # Run this script while the server is running: npm start
 # Usage: bash test.sh
 
-BASE="http://localhost:3000"
+BASE="http://localhost:3001"
 PASS=0
 FAIL=0
 
